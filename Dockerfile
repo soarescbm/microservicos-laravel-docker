@@ -20,7 +20,8 @@ WORKDIR /var/www
 RUN rm -rf /var/www/html
 #COPY . /var/www
 RUN ln -s public html
-
+RUN chown -R www-data:root /var/www
+RUN chmod -R 777 /var/www
 #laravel config
 #RUN composer install
 #RUN cp .env.example .env

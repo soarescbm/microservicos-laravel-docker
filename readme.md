@@ -19,13 +19,7 @@ php artisan serve --host=0.0.0.0
 
 ### Docker Compose 
 
-Configuração Laravel
-```
-composer install
-cp .env.example .env
-php artisan key:generate
-php artisan config:cache
-```
+
 Docker Compose
 
 ```
