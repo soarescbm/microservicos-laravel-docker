@@ -13,17 +13,32 @@ docker exec -it laravel-5.8-docker bash
 php artisan serve --host=0.0.0.0
 ```
 
-##### - Navegador http://localhost:8000
+ - Teste navegador http://localhost:8000
 
 
 
 ### Docker Compose 
 
+Configuração Laravel
+```
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan config:cache
+```
+Docker Compose
+
 ```
 docker-compose up -d 
-docker exec -it laravel-5.8-docker bash
-php artisan serve --host=0.0.0.0
 ```
 
-#####  Navegador http://localhost:8000
+Migration Laravel
+
+```
+docker exec -it app bash
+php artisan migrate
+``` 
+
+
+
 
