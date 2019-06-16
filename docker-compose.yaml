@@ -10,7 +10,7 @@ services:
           - .:/var/www
         networks:
           - app-network
-
+#        command: ["./docker/db/wait-for-mysql.sh", "db", "--", "python", "app.py"]
 
 #        depends_on:
 #          db:
