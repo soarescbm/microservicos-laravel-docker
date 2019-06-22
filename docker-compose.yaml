@@ -6,21 +6,31 @@ services:
     app:
         build: .
         container_name: app
+        environment:
+          - DB_CONNECTION=mysql
+          - DB_HOST=db
+          - DB_PORT=3306
+          - DB_DATABASE=microservicos
+          - DB_USERNAME=root
+          - DB_PASSWORD=root
+        entrypoint: dockerize -template ./.docker/app/.env:.env -wait tcp://db:3306  -timeout 30s ./.docker/app/entrypoint.sh
         volumes:
           - .:/var/www
         networks:
           - app-network
-
-
-#        depends_on:
-#          db:
-#            condition: service_healthy
+        depends_on:
+          - db
+          - redis
 
 
 
     nginx:
         build: .docker/nginx
         container_name: nginx
+        environment:
+          - PHP_FPM_HOST=app
+          - PHP_FPM_PORT=9000
+        entrypoint:  dockerize -template ./.docker/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf -wait tcp://app:9000 nginx -g "daemon off;"
         restart: always
         tty: true
         ports:
@@ -29,6 +39,8 @@ services:
           - .:/var/www
         networks:
           - app-network
+        depends_on:
+          - app
 
 
     redis:
@@ -55,11 +67,7 @@ services:
           - MYSQL_ROOT=root
         networks:
           - app-network
-#        healthcheck:
-#          test: ["CMD-SHELL", 'mysql -uroot --database=microservicos --password=root --execute="select count(table_name) > 0 from information_schema.tables;"  --skip-column-names -B']
-#          interval: 10s
-#          timeout: 10s
-#          retries: 4
+
 
 
 networks:

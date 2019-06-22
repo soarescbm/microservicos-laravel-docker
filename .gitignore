@@ -7,6 +7,9 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-/.docker
+/.docker/dbdata
 .idea
+/vendor
+.env
+
 
