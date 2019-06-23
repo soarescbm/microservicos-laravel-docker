@@ -19,6 +19,7 @@ ngix:
 
 Docker Compose
 
+Obs: Como será instalado as dependências da app pelo composer install, o serviço do nginx irá esperar pela comclusão das dependências da app, o que pode lever mais de 60 segundos.
 ```
 docker-compose up -d 
 ```
