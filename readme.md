@@ -1,24 +1,21 @@
 
 
-## Microserviços - Projeto Prático
+## Microserviços - Desafio Prático
 
-### Laravel Imagem Docker
+### 1 - Template NGINX
 
-- https://cloud.docker.com/repository/docker/soarescbm/laravel
-
-
+Configuração 
 ```
-docker run -d --name laravel-5.8-docker -p 8000:8000 soarescbm/laraval:5.8-env-docker
-docker exec -it laravel-5.8-docker bash
-php artisan serve --host=0.0.0.0
+...
+ngix:
+        build: .docker/nginx
+        container_name: nginx
+        environment:
+          - PHP_FPM_HOST=app
+          - PHP_FPM_PORT=9000
+        entrypoint:  dockerize -template ./.docker/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf -wait tcp://app:9000 nginx -g "daemon off;"
+...
 ```
-
- - Teste navegador http://localhost:8000
-
-
-
-### Docker Compose 
-
 
 Docker Compose
 
@@ -26,13 +23,13 @@ Docker Compose
 docker-compose up -d 
 ```
 
-Migration Laravel
+### 2 e 3 -  Imagem Go Lang Otimizada
+
+Otimizada
 
 ```
-docker exec -it app bash
-php artisan migrate
-``` 
-
+docker run soarescbm/codeeducation
+```
 
 
 
