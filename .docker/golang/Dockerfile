@@ -1,4 +1,4 @@
-FROM golang:1.12.6-stretch #as buildando
+FROM golang:1.12.6-stretch as buildando
 
 WORKDIR /go/src/app
 
@@ -13,5 +13,5 @@ WORKDIR /bin
 
 COPY --from=buildando /go/bin/app /bin
 
-CMD ["app"]
+CMD ["/bin/app"]
 
