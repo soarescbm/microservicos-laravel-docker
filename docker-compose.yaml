@@ -12,7 +12,7 @@ services:
           - DB_DATABASE=microservicos
           - DB_USERNAME=root
           - DB_PASSWORD=root
-        entrypoint: dockerize -template ./.docker/app/.env:.env -wait tcp://db:3306  -timeout 30s ./.docker/app/entrypoint.sh
+        entrypoint: dockerize -template ./.docker/app/.env:.env -wait tcp://db:3306  -timeout 60s ./.docker/app/entrypoint.sh
         volumes:
           - .:/var/www
         networks:
@@ -30,7 +30,7 @@ services:
         environment:
           - PHP_FPM_HOST=app
           - PHP_FPM_PORT=9000
-        entrypoint:  dockerize -template ./.docker/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf -wait tcp://app:9000 nginx -g "daemon off;"
+        entrypoint:  dockerize -template ./.docker/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf -wait tcp://app:9000  --timeout 120s nginx -g "daemon off;"
         restart: always
         tty: true
         ports:
