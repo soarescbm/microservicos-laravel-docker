@@ -18,4 +18,4 @@ steps:
 
 - id: 'Gerando key'
   name: 'gcr.io/cloud-builders/docker'
-  args: ['exec', '-t', 'app', 'php ', 'artisan', 'key:generate']
+  args: ['exec', '-t', 'app', 'php', 'artisan', 'key:generate']
