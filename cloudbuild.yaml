@@ -1,4 +1,4 @@
-step:
+steps:
 
 - id:"Rodando Docker Compose"
   name:'gcr.io/$PROJECT_ID/docker-compose'
