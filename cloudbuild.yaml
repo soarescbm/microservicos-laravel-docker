@@ -14,4 +14,4 @@ steps:
 
 - id: 'Copiando .env'
   name: 'gcr.io/cloud-builders/docker'
-  args: ['exec', '-t', 'app', 'cp', '.env.exemple', '.env']
+  args: ['exec', '-t', 'app', 'cp', '.env.example', '.env']
