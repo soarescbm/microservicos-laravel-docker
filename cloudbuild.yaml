@@ -12,6 +12,6 @@ steps:
   args: ['exec', '-t', 'app', 'composer', 'install']
 
 
-- id: 'Compiando .env'
+- id: 'Copiando .env'
   name: 'gcr.io/cloud-builders/docker'
   args: ['exec', '-t', 'app', 'cp', '.env.exemple', '.env']
